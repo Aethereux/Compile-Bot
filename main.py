@@ -6,12 +6,18 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="-", intents=intents)
 
+
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
 
+
 @bot.command()
-async def send(ctx, arg):
-    await ctx.send(arg)
+async def send(ctx, *args):
+    out = ""
+    for arg in args:
+        out += " " + arg
+    await ctx.send(out)
+
 
 bot.run(os.getenv("COMPILE_BOT_TOKEN"))
