@@ -20,4 +20,13 @@ async def send(ctx, *args):
     await ctx.send(out)
 
 
-bot.run(os.getenv("COMPILE_BOT_TOKEN"))
+def run_bot():
+    token = os.getenv("COMPILE_BOT_TOKEN")
+    if token is None or token == "":
+        print("Bot token not found!")
+        return
+
+    bot.run(token)
+
+
+run_bot()
